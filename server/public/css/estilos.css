@@ -1,0 +1,27 @@
+.head-landing{
+    background-image: url(../img/cover.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size:cover;
+    height: 480px;
+    width: 100%;
+}
+
+
+
+.empresa{
+    font-size: 70px;
+    color: white;
+    position: absolute;
+    left: 577.86px;
+    top: 181px;
+     
+}
+
+#fondo-imagen{
+    background-color: #0f4e7394;
+    position: absolute;
+    height: 479px;
+    width: 100%;
+}
