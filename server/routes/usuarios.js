@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bcrypt  = require('bcrypt');
 const Usuario = require('../models/usuario');
+const {verificarAutenticacion}=require('./midlewares')
 
 app.post('/usuarios/crear',async(req,res)=>{
     let usuario = req.body;
@@ -34,7 +35,7 @@ app.post('/usuarios/crear',async(req,res)=>{
 
 });
 
-app.get('/usuarios', async(req, res) =>{
+app.get('/usuarios',verificarAutenticacion, async(req, res) =>{
     let usuarios = await Usuario.find();
     if (usuarios != 0){
         return res.send({
@@ -46,6 +47,40 @@ app.get('/usuarios', async(req, res) =>{
             status: 404,
             mensaje: 'No existen usuarios'
         })
+    }
+})
+
+app.post('/usuarios/login', async(req, res) =>{
+    let usuario = req.body;
+    try {
+        let usuarioLogin = await Usuario.findOne({ nombreUsuario: usuario.nombreUsuario })
+        if (!usuarioLogin){
+            return res.send({
+                status:404,
+                mensaje: 'Datos Incorrectos, Ingreselos de nuevo'
+            })
+        }
+        if(!bcrypt.compareSync(usuario.contrasena, usuarioLogin.contrasena)){
+            return res.send({
+                status:404,
+                mensaje: 'Datos Incorrectos, Ingreselos de nuevo'
+            })
+        }
+
+        req.session._id = usuarioLogin._id;
+        req.session.nombre = usuarioLogin.nombre
+        req.session.nombreUsuario = usuarioLogin.nombreUsuario;
+
+        return res.send({
+            status: 200,
+            mensaje: 'login exitoso',
+            data: usuarioLogin
+        })
+
+
+
+    } catch (error) {
+        
     }
 })
 
