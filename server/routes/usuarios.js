@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bcrypt  = require('bcrypt');
 const Usuario = require('../models/usuario');
+const Proyecto  = require("../models/Proyecto")
+
 const {verificarAutenticacion}=require('./midlewares')
 
 app.post('/usuarios/crear',async(req,res)=>{
@@ -18,6 +20,7 @@ app.post('/usuarios/crear',async(req,res)=>{
             nombre:usuario.nombre,
             correo: usuario.correo,
             nombreUsuario: usuario.nombreUsuario,
+            plan : usuario.plan,
             contrasena:bcrypt.hashSync(usuario.contrasena,10)
         })
         let usuarioGuardado = await nuevoUsuario.save();
@@ -49,6 +52,17 @@ app.get('/usuarios',verificarAutenticacion, async(req, res) =>{
         })
     }
 })
+
+app.get("/usuariosCompartir",async(req,res)=>{
+    let idLog = req.session._id
+    
+    let usuarios= await Usuario.find({_id: {$ne: idLog }})
+    console.log(usuarios)
+    return res.send({
+        status:200,
+        data: usuarios
+    })
+});
 
 app.post('/usuarios/login', async(req, res) =>{
     let usuario = req.body;
@@ -82,6 +96,37 @@ app.post('/usuarios/login', async(req, res) =>{
     } catch (error) {
         
     }
+})
+
+app.post("/usuarios/compartir",async(req,res)=>{
+    let usuarioCompartir = req.body.idUsuario;
+    let carpetaCompartida = req.body.idCarpeta
+    let usuarioCompartido = await Usuario.findByIdAndUpdate(usuarioCompartir,{$push:{ carpetasCompartidas:carpetaCompartida}})
+
+    return res.send({
+        carpetas:usuarioCompartido.carpetasCompartidas,
+        status:200
+    })
+})
+
+app.get("/compartir",async(req,res)=>{
+    let id = req.session._id
+    let usuario = await Usuario.findById(id)
+    .populate({path:"carpetasCompartidas",select:"nombre _id"})
+
+    let carpetas =  usuario.carpetasCompartidas
+    return res.send({
+        status:200,
+        carpetas
+    })
+})
+
+app.get("/logueado",verificarAutenticacion,async(req,res)=>{
+    return res.send({
+        id:req.session._id ,
+        nombre:req.session.nombre, 
+        nombreUsuario:req.session.nombreUsuario 
+    })
 })
 
 module.exports = app

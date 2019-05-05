@@ -59,6 +59,7 @@
             
                         <div class="col-xl-4  col-sm-4 col-md-4 ">
                             <img src="img/html-5.png" style="widows: 60px; height:60px;" alt="">
+                            <button class="btn btn-info" onclick="guardarEditor()">Guardar Proyecto</button>
                         </div>
                         <div class="col-xl-4 col-sm-4 col-md-4">
                                 <img src="img/css-3.png" style="widows: 60px; height:60px;" alt="">
@@ -73,7 +74,9 @@
       
 
     </div>
-    
+    <input type="hidden" id="html" name="" value="">
+    <input type="hidden" id="css" name="" value="">
+    <input type="hidden" id="js" name="" value="">
     <div class="container-fluid">        
             <div  id="htmleditor"></div>
             <div  id="jseditor"></div>
@@ -128,6 +131,7 @@
 
 
     </div>
+    <script src="js/editor-controller.js" ></script>
 
 
 </body>

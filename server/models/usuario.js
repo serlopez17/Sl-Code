@@ -17,7 +17,14 @@ const usuarioSchema = new Schema({
     nombreUsuario:{
         type:String,
         required:true,
-    }
+    },
+    plan:{
+        type:Number,
+        required:true
+    },
+    carpetasCompartidas:[{
+        type:Schema.Types.ObjectId, ref : 'Proyecto'
+    }]
 })
 
 usuarioSchema.methods.toJSON = function() {

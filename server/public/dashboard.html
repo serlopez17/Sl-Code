@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/fontAwesone.min.js"></script>
     <title>Document</title>
-    <style>
+    <style> 
         body {
             background: #f8f9fa;
             font-size: 16px;
@@ -104,22 +106,19 @@
                         <i class="fas fa-laptop"></i>
                         <span>Mi Unidad</span>
                     </a>
-                    <a href="#" class="" title="compartidos Conmigo">
+                    <a href="#" onclick="compartidasConmigo()" class="" title="compartidos Conmigo">
                         <i class="far fa-handshake"></i>
                         <span>Compartidos Conmigo</span>
                     </a>
-                    <a href="Destacados.html" title="Favoritos" class="">
+                    <a href="#" onclick="todosProyectos()" title="Favoritos" class="">
                         <i class="far fa-star"></i>
-                        <span>Favoritos</span>
+                        <span>Proyectos</span>
                     </a>
                     <a href="#" title="Recientes" class="">
                         <i class="far fa-edit"></i>
                         <span>Recientes</span>
                     </a>
-                    <a href="editor.html" title="Editor" class="">
-                        <i class="far fa-sticky-note"></i>
-                        <span>Editor</span>
-                    </a>
+                    
                     <button class="navbar-toggler d-block d-md-none" type="button" data-toggle="collapse" data-target="#navbarPrincipal" aria-controls="navbarPrincipal"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span>
@@ -129,101 +128,142 @@
                 </nav>
             </div>
             <main class="col">
-                <nav class="row navbar navbar-expand-md navbar-light">
+                <nav class="row navbar navbar-expand-md navbar-light" style="height: 65px;">
                     <div class="collapse navbar-collapse" id="navbarPrincipal">
                         <div class="col-lg-8">
                             <div class="input-group">
-                                <input type="search" class="form-control" id="Buscar" placeholder="Buscar">
                                 <div class="input-group-append">
-                                    <button class="btn btn-light" style="border: none;">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                                    
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Crear Carpeta</button>
+
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Crear Nueva Carpeta</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Nombre de Carpeta</label>
+                                                <input type="text" class="form-control" id="nombreCarpeta">
+                                            </div>
+                                            
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary" id="crear-carpeta" onclick="crearCarpeta()" >Guardar Carpeta</button>
+                                            
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </div>
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@getbootstrap">Crear Proyecto</button>
+                                
+                                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Proyecto</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label" id="nombreP">Nombre del Proyecto</label>
+                                            <input type="text" class="form-control" id="nombreProyecto">
+                                        </div>
+                                        
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary" id="crear-proyecto" onclick="crearProyecto()" >Guardar Proyecto</button>
+                                        
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                
+                                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabe3">Crear Nuevo Proyecto</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                            <div class="form-group" id="modalCompartir">
+                                                <label for="recipient-name" class="col-form-label" id="nombreP">Nombre del Proyecto</label>
+                                                <select name="" id="selectCompartir" class="form-control">
+                                                </select>
+                                                <input type="hidden" id="idProyectoSeleccionado"name="">
+                                            </div>
+                                            
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-primary" id="crear-proyecto" onclick="compartirCarpeta()" >Compartir</button>
+                                            
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+
+
                             </div>
                         </div>
                         <div class="col-lg-4 text-right">
-                            <a href="/logout" class="btn btn-outline-primary">
+                            <span class="p-4 text-light text-muted" id="nombrelogueado"></span>
+                            <a href="/logout" class="btn btn-outline-primary bg-light ">
                                 Salir
                             </a>
                         </div>
                     </div>
                 </nav>
-                <div class="row mt-5">
+                <br>
+                   
+                <div class="container-fluid p-4">
+                    <div class="row ml-2" id="nc-div">
 
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/img/Java.svg" height="200" width="200" alt="Card image cap">
-                            <div class="card-body">
-                                
-                                <button  class="btn btn-info verArchivo">Ver Archivo</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/img/Java.svg" height="200" width="200" alt="Card image cap">
-                            <div class="card-body">
-                                <button  class="btn btn-info verArchivo">Ver Archivo</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/img/Java.svg" height="200" width="200" alt="Card image cap">
-                            <div class="card-body">
-                                <button  class="btn btn-info verArchivo">Ver Archivo</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/img/Java.svg" height="200" width="200" alt="Card image cap">
-                            <div class="card-body">
-                                <button  class="btn btn-info verArchivo">Algo</button>
-                            </div>
-                        </div>
+                            <img src="img/folder.png" onclick="cargarCarpetas()" style="width:20px; height: 20PX;" alt=""> 
+                            <span class="ml-1 mb-3" id="nc">Proyecto</span>
+                            <input type="hidden" value="" id="idCarpeta">
+                    </div>   
+                        
+                    <div class="row" id="content-carpetas">
+                        
                     </div>
 
+
+                    <div class="row" id="content-proyectos">
+                        
+                        </div>
                 </div>
             </main>
         </div>
     </div>
-    <script>
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script src="js/carpetas-controller.js" > </script>
+    <script src="js/proyectos-controller.js" > </script>
+    
+
+
 </body>
 
 </html>
-
-<div class="col-xl-4 col-lg-4 col-md-6 col-sm-10 col-12" idBorrar=${respuesta.codigo_archivo}>
-    <div class="card">
-        <div class="card-header">
-            ${respuesta.nombre_archivo}
-            <span idArchivo=${respuesta.codigo_archivo} class="${clase}  darFavorito">
-                <i class="far fa-star"></i>
-            </span>
-        </div>
-        <img class="card-img-top S" src="${respuesta.icono}.svg" width="125" height="125" alt="Card image cap">
-        <div class="card-body text-center">
-            <a href=/actualizarArchivo/${respuesta.codigo_archivo} class="btn btn-info verArchivo">Ver</a>
-            <button class="btn btn-danger borrarArchivo">Borrar</button>
-            <button data-toggle="modal" data-target="#exampleModal"  class="btn btn-success compartir">Compartir</button>
-            <button idArchivo=${respuesta.codigo_archivo} class="btn btn-dark descargar ">Descargar</button>
-        </div>
-        <div class="card-footer text-muted">
-            ${new Date(respuesta.fecha_creacion).toDateString() }
-        </div>
-    </div>
-</div>
-
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-</div>
-
-
-<!-- <button idBorrar=${respuesta.codigo_archivo} class="btn btn-danger borrarArchivo">Borrar Archivo</button> -->

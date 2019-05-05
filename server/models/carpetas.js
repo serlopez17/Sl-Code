@@ -9,22 +9,12 @@ const carpetaSchema = new Schema({
     propietario:{
         type:Schema.Types.ObjectId, ref : 'Usuario'
     },
-    usuariosInvitados:[{
-        type:Schema.Types.ObjectId, ref : 'Usuario'
-    }],
     estado:{
         type: Boolean,
         default: true
     },
-    html:{
-        type:Schema.Types.ObjectId, ref : 'Archivo'
-    },
-    css:{
-        type:Schema.Types.ObjectId, ref : 'Archivo'
-    },
-    js:{
-        type:Schema.Types.ObjectId, ref : 'Archivo'
-    }
+    carpetaPadre:{
+        type:Schema.Types.ObjectId, ref : 'Carpeta'}
 })
 
 module.exports = mongoose.model('Carpeta',carpetaSchema);

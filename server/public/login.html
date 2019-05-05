@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!--===============================================================================================-->	
@@ -45,7 +46,7 @@
                             <div class="login100-more col-12" style="background-image: url('images/bg-01.jpg');"></div>
                 
                             <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50 col-12" style="margin-left: 421px;">
-                                <form class="login100-form validate-form">
+                                <form class="login100-form validate-form" id="login-usuario">
                                     <span class="login100-form-title p-b-59 lead text-center display-3">
                                         Iniciar Sesion
                                     </span>
@@ -56,13 +57,13 @@
                 
                                     <div class="wrap-input100 validate-input" data-validate="Usuario Obligatoria">
                                         <span class="label-input100 lead">Usuario</span>
-                                        <input class="input100" type="text" name="username" >
+                                        <input class="input100" type="text" name="username" id="username" >
                                         <span class="focus-input100"></span>
                                     </div>
                 
                                     <div class="wrap-input100 validate-input" data-validate = "Contraseña Obligatoria">
                                         <span class="label-input100 lead">Contraseña</span>
-                                        <input class="input100" type="password" name="pass" placeholder="*************" >
+                                        <input class="input100" type="password" name="pass" id="psw" placeholder="*************" >
                                         <span class="focus-input100"></span>
                                     </div>
                 
@@ -92,6 +93,7 @@
 
 
 
+
 <!--===============================================================================================-->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -107,8 +109,14 @@
 <!--===============================================================================================-->
     <script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-    <script src="js/main.js"></script>
+<script src="js/main.js"></script>
+<script src="js/usuario-controlador.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  
+
 <!-- Seccion de llamados a Js y demas-->
+
+
     
 </body>
 </html>
