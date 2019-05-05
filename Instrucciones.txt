@@ -1,0 +1,10 @@
+1) En el gitignore estan excluidos los node modules, ejecutar desde
+la consola en coman npm install
+
+2) crear una base de datos en Mongodb con el nombre slcode (use slcode)
+
+3) ejecutar el comando node server/index.js para levantar el servidor
+
+4) crear un usuario para poder loguearse en el sistema
+
+5) Disfrutar de la Experiencia
