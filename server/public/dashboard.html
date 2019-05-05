@@ -58,8 +58,8 @@
 
         .barra-lateral .menu a:hover {
             text-decoration: none;
-            background: white;
-            color: black;
+            background: rgb(57, 154, 192);
+            color: rgb(255, 255, 255);
         }
 
         #barraSuperior {
@@ -85,7 +85,7 @@
         }
 
         nav {
-            background: #074F7B;
+            background: rgb(5, 75, 119);
         }
     </style>
 </head>
@@ -104,19 +104,19 @@
                 <nav class="menu d-flex d-sm-block  justify-content-center flex-wrap barra-lateral">
                     <a href="Dashboard.html" title="Mi Unidad" class="pr-1">
                         <i class="fas fa-laptop"></i>
-                        <span>Mi Unidad</span>
+                        <span>Unidad Principal</span>
                     </a>
                     <a href="#" onclick="compartidasConmigo()" class="" title="compartidos Conmigo">
                         <i class="far fa-handshake"></i>
                         <span>Compartidos Conmigo</span>
                     </a>
-                    <a href="#" onclick="todosProyectos()" title="Favoritos" class="">
-                        <i class="far fa-star"></i>
+                    <a href="#" onclick="todosProyectos()" title="Proyectos" class="">
+                            <i class="fas fa-project-diagram"></i>
                         <span>Proyectos</span>
                     </a>
-                    <a href="#" title="Recientes" class="">
+                    <a href="/logout" title="salir" class="">
                         <i class="far fa-edit"></i>
-                        <span>Recientes</span>
+                        <span>Salir</span>
                     </a>
                     
                     <button class="navbar-toggler d-block d-md-none" type="button" data-toggle="collapse" data-target="#navbarPrincipal" aria-controls="navbarPrincipal"
@@ -228,7 +228,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4 text-right">
-                            <span class="p-4 text-light text-muted" id="nombrelogueado"></span>
+                            <span class="p-4  text-muted " id="nombrelogueado"></span>
                             <a href="/logout" class="btn btn-outline-primary bg-light ">
                                 Salir
                             </a>

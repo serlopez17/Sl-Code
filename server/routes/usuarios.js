@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const bcrypt  = require('bcrypt');
+const {OAuth2Client} = require('google-auth-library');
+const CLIENT_ID = "1022892592724-e26o8tgtaldm0ir8cqmgf49im60pjgu0.apps.googleusercontent.com"
+const client = new OAuth2Client(CLIENT_ID);
 const Usuario = require('../models/usuario');
 const Proyecto  = require("../models/Proyecto")
 
@@ -63,6 +66,29 @@ app.get("/usuariosCompartir",async(req,res)=>{
         data: usuarios
     })
 });
+
+async function verify(token) {
+    const ticket = await client.verifyIdToken({
+        idToken: token,
+        audience: CLIENT_ID ,  // Specify the CLIENT_ID of the app that accesses the backend
+        // Or, if multiple clients access the backend:
+        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+    });
+    const payload = ticket.getPayload();
+    console.log(payload.name)
+    console.log(payload.email)
+    return{
+        nombre: payload.name,
+        email: payload.name,
+        google: true
+    }
+
+ 
+    }
+
+
+
+
 
 app.post('/usuarios/login', async(req, res) =>{
     let usuario = req.body;

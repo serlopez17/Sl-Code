@@ -14,9 +14,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(session({secret:'sergioLopez12345678',resave:true,saveUninitialized:true}))
 
-
-
-
 //routes
 app.use( require('./routes/index'));
 

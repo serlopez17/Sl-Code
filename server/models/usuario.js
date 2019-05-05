@@ -22,6 +22,7 @@ const usuarioSchema = new Schema({
         type:Number,
         required:true
     },
+  
     carpetasCompartidas:[{
         type:Schema.Types.ObjectId, ref : 'Proyecto'
     }]

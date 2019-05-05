@@ -110,7 +110,25 @@ function compartirCarpeta(){
         data: data,
 		dataType:"json",
 		success:function(res){
-            alert("se compartio con exito")
+            var msg1 = "Se compartio correctamente el proyecto"
+            toastr.options = {
+                "closeButton": true,
+                "debug": true,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+                }
+            toastr.success(msg1, "Proyecto Compartido!");
 		},
 		error:function(error){
 			console.error(error);
